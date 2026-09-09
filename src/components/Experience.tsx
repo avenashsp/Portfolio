@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import GlassCard from "./ui/GlassCard";
 import eiffelTower from "../../images/eiffel_tower.png";
@@ -12,7 +12,17 @@ import netevenLogo from "../../logo/neteven_logo.png";
 import cognizantLogo from "../../logo/cognizant_logo.png";
 import datamaticsLogo from "../../logo/datamatics_logo.png";
 
-const experiences = [
+interface ExperienceItem {
+  id: number;
+  title: string;
+  date: string;
+  logo: StaticImageData;
+  bg: StaticImageData;
+  bullets: string[];
+  empty?: boolean;
+}
+
+const experiences: ExperienceItem[] = [
   {
     id: 1,
     title: "Customer Success Manager (Intern)",
@@ -84,7 +94,7 @@ export default function Experience() {
       {/* Sticky container that stays in view while scrolling */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center">
 
-        <SectionTitleOverlay title="EXPERIENCE" scrollYProgress={scrollYProgress} />
+        <SectionTitleOverlay title="EXPERTISE" scrollYProgress={scrollYProgress} />
         
         <SectionContentWrapper scrollYProgress={scrollYProgress} yRange={[0.2, 0.4]}>
 

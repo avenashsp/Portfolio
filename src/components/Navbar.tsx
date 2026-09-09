@@ -34,12 +34,12 @@ export default function Navbar() {
     >
       <GlassCard as="nav" className="w-full flex items-center justify-between px-8 py-4 md:px-12 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
         <div className="relative z-10 font-playfair italic font-black text-3xl md:text-4xl text-white tracking-tight">
-          <a href="/" className="cursor-pointer hover:text-[#F25A5F] transition-colors">SM.</a>
+          <Link href="/" className="cursor-pointer hover:text-[#F25A5F] transition-colors">SM.</Link>
         </div>
         <div className="relative z-10 hidden md:flex gap-12 text-white font-futuraBook font-bold text-[20px] tracking-wide">
           <Link href="#about" className="hover:text-[#5893E0] transition-colors">About</Link>
           <Link href="#skills" className="hover:text-[#5893E0] transition-colors">Skills</Link>
-          <Link href="#experience" className="hover:text-[#5893E0] transition-colors">Experience</Link>
+          <Link href="#experience" className="hover:text-[#5893E0] transition-colors">Expertise</Link>
           <Link href="#projects" className="hover:text-[#5893E0] transition-colors">Projects</Link>
           <Link href="#contact" className="hover:text-[#5893E0] transition-colors">Contact</Link>
         </div>

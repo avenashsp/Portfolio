@@ -3,7 +3,7 @@
 import React, { useRef, useState, MouseEvent } from "react";
 
 interface GlassCardProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
   as?: React.ElementType;
 }
@@ -21,7 +21,7 @@ export default function GlassCard({ children, className = "", as: Component = "d
 
   return (
     <Component
-      ref={ref as any}
+      ref={ref as unknown as React.Ref<HTMLDivElement>}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setOpacity(1)}
       onMouseLeave={() => setOpacity(0)}

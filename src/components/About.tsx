@@ -25,7 +25,7 @@ export default function About() {
   // Animation variants
   const revealVariants = {
     hidden: { opacity: 0, y: 70 },
-    visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } },
+    visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] as const } },
   };
 
   const floatVariants = {
@@ -34,7 +34,7 @@ export default function About() {
       transition: {
         duration: 4,
         repeat: Infinity,
-        ease: "easeInOut",
+        ease: "easeInOut" as const,
         delay: delay,
       },
     }),
