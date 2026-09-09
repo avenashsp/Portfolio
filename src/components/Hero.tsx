@@ -13,7 +13,7 @@ export default function Hero() {
 
       {/* Background Video */}
       <video
-        src="/videos/bgVideo (7).mp4"
+        src="/videos/bgVideo (3).mp4"
         autoPlay
         loop
         muted
