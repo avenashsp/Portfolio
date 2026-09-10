@@ -8,12 +8,14 @@ import GlassCard from "./ui/GlassCard";
 import GlassButton from "./ui/GlassButton";
 
 export default function Hero() {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
   return (
     <section className="relative w-full min-h-screen pt-32 flex flex-col justify-between overflow-hidden">
 
       {/* Background Video */}
       <video
-        src="/videos/bgVideo (3).mp4"
+        src={`${basePath}/videos/bgVideo (3).mp4`}
         autoPlay
         loop
         muted
@@ -36,10 +38,16 @@ export default function Hero() {
 
           {/* Download Button */}
           <div className="w-full max-w-[1300px] relative z-30 mt-8 mb-4">
-            <GlassButton className="group flex items-center gap-3 bg-white/30 hover:bg-white/40 backdrop-blur-md border border-white/30 text-white px-6 py-3 rounded-full shadow-[0_4px_14px_0_rgba(31,38,135,0.03)] hover:shadow-[0_4px_14px_0_rgba(31,38,135,0.08)] transition-colors duration-300 font-futuraBook font-bold text-lg">
-              <Image src={downloadIcon} alt="Download" width={28} height={28} className="opacity-90 grayscale group-hover:grayscale-0 transition-all duration-300" />
-              <span>Download Resume</span>
-            </GlassButton>
+            <a
+              href={`${basePath}/Swathy_Resume.pdf`}
+              download="Swathy_Moorthy_Resume.pdf"
+              className="inline-block"
+            >
+              <GlassButton className="group flex items-center gap-3 bg-white/30 hover:bg-white/40 backdrop-blur-md border border-white/30 text-white px-6 py-3 rounded-full shadow-[0_4px_14px_0_rgba(31,38,135,0.03)] hover:shadow-[0_4px_14px_0_rgba(31,38,135,0.08)] transition-colors duration-300 font-futuraBook font-bold text-lg cursor-pointer">
+                <Image src={downloadIcon} alt="Download" width={28} height={28} className="opacity-90 grayscale group-hover:grayscale-0 transition-all duration-300" />
+                <span>Download Resume</span>
+              </GlassButton>
+            </a>
           </div>
         </div>
 
