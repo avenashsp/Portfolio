@@ -85,6 +85,7 @@ export default function Skills() {
             {skills.map((skill, index) => {
               const isHovered = hoveredSkill === skill.id;
               const isAnyHovered = hoveredSkill !== null;
+              const isBottomSkill = skill.id === 7 || skill.id === 8;
 
               return (
                 <motion.div
@@ -117,11 +118,11 @@ export default function Skills() {
                           {skill.name}
                         </span>
 
-                        {/* Hover Popup */}
+                        {/* Hover Popup: positioned above for bottom-row skills to prevent clipping */}
                         <div 
-                          className={`absolute top-full mt-4 w-64 md:w-80 bg-black/60 backdrop-blur-2xl border border-white/10 rounded-2xl p-4 shadow-2xl transition-all duration-300 pointer-events-none z-50 ${isHovered ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-4 scale-95'}`}
+                          className={`absolute ${isBottomSkill ? 'bottom-full mb-4' : 'top-full mt-4'} w-64 md:w-80 bg-black/75 backdrop-blur-2xl border border-white/15 rounded-2xl p-4 shadow-2xl transition-all duration-300 pointer-events-none z-50 ${isHovered ? 'opacity-100 translate-y-0 scale-100' : `opacity-0 ${isBottomSkill ? 'translate-y-4' : '-translate-y-4'} scale-95`}`}
                         >
-                          <p className="text-white/90 text-sm md:text-base font-futuraBook leading-relaxed text-center whitespace-normal">
+                          <p className="text-white/95 text-sm md:text-base font-futuraBook leading-relaxed text-center whitespace-normal">
                             {skill.description}
                           </p>
                         </div>
