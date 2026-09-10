@@ -2,7 +2,7 @@
 
 export default function Footer() {
   return (
-    <footer className="w-full relative z-30 bg-gradient-to-r from-[#121216] via-[#23232c] to-[#121216] border-t border-white/20 shadow-[0_-16px_50px_rgba(0,0,0,0.7)] py-4 sm:py-6 md:py-8 lg:py-10 overflow-hidden flex items-center justify-center">
+    <footer className="w-full relative z-30 -mt-1 bg-gradient-to-r from-[#121216] via-[#23232c] to-[#121216] py-4 sm:py-6 md:py-8 lg:py-10 overflow-hidden flex items-center justify-center">
       {/* Subtle smoky glass highlight */}
       <div className="absolute inset-0 bg-gradient-to-b from-white/[0.08] via-transparent to-black/40 pointer-events-none" />
       

@@ -31,15 +31,10 @@ export default function Contact() {
 
   // Calculate the exact overflow of the full uncropped image inside the card
   const updateDistance = useCallback(() => {
-    if (cardRef.current) {
+    if (cardRef.current && imgRef.current) {
       const cardH = cardRef.current.offsetHeight;
-      const cardW = cardRef.current.offsetWidth;
-      // contactBg natural aspect ratio: 4032 / 3024 = 1.3333
-      const naturalAspect = contactBg.height / contactBg.width;
-      const computedImgH = Math.max(cardH, cardW * naturalAspect);
-      const measuredImgH = imgRef.current ? imgRef.current.offsetHeight : computedImgH;
-      const finalImgH = Math.max(cardH, measuredImgH || computedImgH);
-      setTravelDistance(finalImgH - cardH);
+      const measuredImgH = imgRef.current.offsetHeight;
+      setTravelDistance(Math.max(0, measuredImgH - cardH));
     }
   }, []);
 
@@ -88,10 +83,10 @@ export default function Contact() {
   };
 
   // Card movement: Only begins rising after section title is fully visible (0.40 to 0.54)
-  const cardY = useTransform(scrollYProgress, [0.40, 0.54], ["95vh", "0vh"]);
+  const cardY = useTransform(scrollYProgress, [0.40, 0.54], ["95vh", "0vh"], { clamp: true });
 
   // Continuous parallax: begins once card docks and smoothly traverses until bottom of image is reached
-  const imageParallaxY = useTransform(scrollYProgress, [0.50, 1], [0, -travelDistance]);
+  const imageParallaxY = useTransform(scrollYProgress, [0.50, 1], [0, -Math.max(0, travelDistance)], { clamp: true });
 
   return (
     <section id="contact" ref={targetRef} className="relative w-full h-[450vh] bg-transparent">
@@ -107,12 +102,12 @@ export default function Contact() {
         <motion.div
           ref={cardRef}
           style={{ y: cardY }}
-          className="w-full h-[85vh] min-h-[580px] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] border-t border-white/25 shadow-[0_-20px_60px_rgba(0,0,0,0.4)] overflow-hidden relative z-20 flex items-center will-change-transform"
+          className="w-full h-[85vh] min-h-[580px] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] border-t border-white/25 shadow-[0_-20px_60px_rgba(0,0,0,0.4)] overflow-hidden relative z-20 flex items-center will-change-transform bg-[#121216]"
         >
           {/* Parallax Background Image Layer: left edge fixed to screen left, scaled up to shift subject right, no blend modes or opacity */}
           <motion.div
             style={{ y: imageParallaxY }}
-            className="absolute top-0 left-0 w-[118%] md:w-[122%] lg:w-[125%] max-w-none will-change-transform pointer-events-none z-0"
+            className="absolute top-0 left-0 w-[118%] md:w-[122%] lg:w-[125%] min-h-full max-w-none will-change-transform pointer-events-none z-0"
           >
             <Image
               ref={imgRef}
@@ -120,7 +115,7 @@ export default function Contact() {
               alt="Swathy Moorthy Contact Background"
               onLoad={updateDistance}
               priority
-              className="w-full h-auto min-w-full min-h-full object-top select-none block"
+              className="w-full h-full min-h-full object-cover object-top select-none block"
             />
           </motion.div>
 
